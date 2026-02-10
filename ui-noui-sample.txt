@@ -1,0 +1,54 @@
+[
+  {
+    "ID": "C53059567",
+    "Title": "CDM update check - Allow Upgrades - when device in different sleep",
+    "Section": "Dune_MasterSet_Coy_Dune_Specific",
+    "Steps (Step)": "Precondition\n1. Connect the USB to the device which having BDL to be updated and the root folder.\nProcedure\n1. Boot the device and make sure it's in a ready state.\n2. Make sure the USB is connected to the device and it's in sleep 1 state.\n3. Use the CDM USB to update, the system should wake up and get updated successfully\ncurl -k -L -X PATCH -i \"https://<ip>/cdm/firmwareUpdate/v2/updateStatus\" --data \"{ \\\"version\\\": \\\"2.0.0\\\", \\\"updateType\\\": \\\"directedUpdate\\\", \\\"state\\\": \\\"downloadPending\\\", \\\"serviceUrl\\\": \\\"/media/sda1/bundle.bdl\\\", \\\"pauseAfterDownload\\\": \\\"false\\\", \\\"resetDataMode\\\": \\\"none\\\"}\"\n4. Check for the UI to change to download processing and then install processing and finally boot back to normal\n\nPrecondition\n1. Connect the USB to the device which having BDL to be updated and the root folder.\nProcedure\n1. Boot the device and make sure it's in a ready state.\n2. Make sure the USB is connected to the device and it's in sleep 2 state.\n3. Use the CDM USB to update, the system should wake up and get updated successfully\ncurl -k -L -X PATCH -i \"https://<ip>/cdm/firmwareUpdate/v2/updateStatus\" --data \"{ \\\"version\\\": \\\"2.0.0\\\", \\\"updateType\\\": \\\"directedUpdate\\\", \\\"state\\\": \\\"downloadPending\\\", \\\"serviceUrl\\\": \\\"/media/sda1/bundle.bdl\\\", \\\"pauseAfterDownload\\\": \\\"false\\\", \\\"resetDataMode\\\": \\\"none\\\"}\"\n4. Check for the UI to change to download processing and then install processing and finally boot back to normal",
+    "Expected Result": "#2. The device should go to sleep 1 state.\n#4. The device should get updated without any error.\n\n#2. The device should go to sleep 1 state.\n#4. The device should get updated without any error.",
+    "Fully Automated": "N",
+    "Dependencies": "USB required",
+    "Comments": "Can be automated",
+    "Updated Comments": "",
+    "Remarks (martin)": "yet to clarify with HP",
+    "Execution Date": "20/01/2026"
+  },
+  {
+    "ID": "C53059596",
+    "Title": "Verify \"Update Firmware button\" press in EWS page while performing AFU, check for no event code",
+    "Section": "Dune_MasterSet_Coy_Dune_Specific",
+    "Steps (Step)": "Pre-condition\n1. Configure URL and keep the proper jwt and bdl of the desired version on the server at the proper location.\nProcedure\n1. Make sure the device is turned On and in an Idle state with base FW\n2. Power cycle the device to trigger AFU\n3. Wait for 30mins\n4. Open the EWS and go to Printer Management > Firmware Update.\n5. Click on the Update now button and verify the firmware update process on UI.",
+    "Expected Result": "The device should boot to an idle state.\nAFU will trigger automatically\n“Check now” should not trigger any impact.",
+    "Fully Automated": "N",
+    "Dependencies": "",
+    "Comments": "Can be automated",
+    "Updated Comments": "",
+    "Remarks (martin)": "Printer and AFU server path is required",
+    "Execution Date": "19/01/2026"
+  },
+  {
+    "ID": "C55670689",
+    "Title": "EWS FW update trigger - AFU  - Same version",
+    "Section": "Dune_MasterSet_Coy_Dune_Specific",
+    "Steps (Step)": "Pre-condition\n1. Configure URL and keep the proper jwt and bdl of the desired version on the server at the proper location.\n2. Allow Upgrades setting should be \"Allow Upgrades\"\n\nProcedure\n1. Make sure the device is turned On and in an Idle state.\n2. Make sure the device has the same version as AFU. (no jwt available for current version on server)\n3. Reboot the device and wait for 30 min.\n4. Observe the message on the device.",
+    "Expected Result": "#1. The device should boot to an idle state.\n#4. UI should show information as the device is UpToDate.",
+    "Fully Automated": "N",
+    "Dependencies": "",
+    "Comments": "Can be automated",
+    "Updated Comments": "",
+    "Remarks (martin)": "",
+    "Execution Date": ""
+  },
+  {
+    "ID": "C55670690",
+    "Title": "UI FW update trigger - AFU  - Same version",
+    "Section": "Dune_MasterSet_Coy_Dune_Specific",
+    "Steps (Step)": "Pre-condition\n1. Configure URL and keep the proper jwt and bdl of the desired version on the server at the proper location.\n2. Allow Upgrades setting should be \"Allow Upgrades\"\n\nProcedure\n1. Make sure the device is turned On and in an Idle state.\n2. Make sure the device has the same version as AFU. (no jwt available for current version on server)\n3. Reboot the device and wait for 30 min.\n4. Observe the message on the device.",
+    "Expected Result": "#1. The device should boot to an idle state.\n#4. UI should show information as the device is UpToDate.",
+    "Fully Automated": "N",
+    "Dependencies": "",
+    "Comments": "Can be automated",
+    "Updated Comments": "",
+    "Remarks (martin)": "",
+    "Execution Date": ""
+  }
+]
